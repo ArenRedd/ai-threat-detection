@@ -24,8 +24,8 @@
 ## Quick Start
 
 ```bash
-git clone https://github.com/ArenRedd/Cybersecurity-Projects.git
-cd PROJECTS/advanced/ai-threat-detection
+git clone https://github.com/ArenRedd/ai-threat-detection
+cd ai-threat-detection
 cp .env.example .env
 docker compose -f dev.compose.yml up -d
 ```

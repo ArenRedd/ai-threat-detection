@@ -60,41 +60,8 @@ Attack modes: `normal`, `sqli`, `xss`, `traversal`, `cmdi`, `log4shell`, `ssrf`,
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                        nginx logs                           │
-│                     (shared volume)                         │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                    PollingObserver
-                           │
-                   ┌───────▼───────┐
-                   │   Raw Queue   │
-                   └───────┬───────┘
-                           │
-              ┌────────────▼────────────┐
-              │     Stage 1: Parse      │
-              │  nginx combined format  │
-              └────────────┬────────────┘
-                           │
-              ┌────────────▼────────────┐
-              │   Stage 2: Features     │
-              │  35-dim vector + GeoIP  │
-              │  + windowed aggregates  │
-              └────────────┬────────────┘
-                           │
-              ┌────────────▼────────────┐
-              │   Stage 3: Detection    │
-              │  Rules + ML Ensemble    │
-              │  AE(40%) RF(40%) IF(20%)│
-              └────────────┬────────────┘
-                           │
-              ┌────────────▼────────────┐
-              │   Stage 4: Dispatch     │
-              │  PostgreSQL + Redis     │
-              │  pub/sub → WebSocket    │
-              └─────────────────────────┘
-```
+<img width="1024" height="1536" alt="AI Threat Detection Architecture Diagram" src="https://github.com/user-attachments/assets/cf519735-3ab1-4668-9e40-66abad2162ff" />
+
 
 Threat scores range from 0.0 to 1.0:
 
